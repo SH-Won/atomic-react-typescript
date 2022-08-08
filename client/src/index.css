@@ -1,4 +1,9 @@
-a{
+a {
+    width: 100%;
+    text-decoration: none;
+    color: black !important;
+}
+/* .link{
     background: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     display: inline-block;
@@ -13,4 +18,4 @@ a{
     transition: transform 200ms ease 0s, background 200ms ease 0s;
     text-align: center;
     text-decoration : none;
-}
+} */

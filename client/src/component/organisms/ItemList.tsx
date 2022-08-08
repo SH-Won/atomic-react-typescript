@@ -1,7 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import Item from '../molecules/Item';
 
+import Item from '../molecules/Item';
+interface itemProps{
+  category:number,
+  description: string,
+  imageUrl? : string,
+  imageUrls : string[],
+  title : string,
+  _id : string,
+}
 const FlexBox = styled.div`
 display:flex;
 flex-wrap : wrap;
@@ -13,7 +21,7 @@ height:100%;
 const ItemList = ({items}) => {
   return (
     <FlexBox>
-        {items.map((item : object) => <Item item={item}/>)}
+        {items.map((item : itemProps) => <Item  item={item}/>)}
     </FlexBox>
   )
 }

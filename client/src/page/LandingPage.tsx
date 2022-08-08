@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useMemo} from 'react'
+import React,{useState,useEffect,useMemo,useCallback} from 'react'
 import { Route } from 'react-router';
 import Tab from '../component/molecules/Tab';
 import ItemList from '../component/organisms/ItemList';
@@ -8,7 +8,11 @@ const linkItems = [{to:'/', name:'연예인'},{to:'/insta',name:'인스타'},{to
 
 const LandingPage = () => {
     const {loading,posts} = useFetch('');
+    console.log(loading);
     console.log(posts);
+    const handleClick = (id:string) =>{
+      // history.pushState(null,null,`/posts/${id}`);
+    }
     if(loading) return <div>loading...</div>
   return (
      <>
@@ -23,7 +27,7 @@ const LandingPage = () => {
       <ItemList items={posts.filter(post => post.category === 3)}/>
      </Route>
      <Route path='/popular'>
-      <ItemList items={posts.filter(post => post.category === 4)}/>
+      <ItemList  items={posts.filter(post => post.category === 4)}/>
      </Route>
      
      </>

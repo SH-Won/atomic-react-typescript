@@ -8,10 +8,11 @@ const useFetch = (url) => {
         try{
             // const fullURL = `https://blog-sh.herokuapp.com/api/posts/${url}`;
             const fullURL = `http://localhost:5000/api/posts/${url}`
+            console.log(fullURL);
             const res = await fetch(fullURL);
             if(res.ok){
                 const json = await res.json();
-                setPosts(json.posts);
+                setPosts(json.length === 1 ? json[0] : json.posts);
                 setLoading(false);
             }
         }catch(e){

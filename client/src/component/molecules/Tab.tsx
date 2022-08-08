@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import Link from '../atoms/Link'
+// import Link from '../atoms/Link'
+import { Link } from 'react-router-dom'
 
 const TabBox = styled.ul`
 margin:0;
@@ -16,7 +17,7 @@ interface itemProps{
 const Tab = ({items}) => {
   return (
     <TabBox>
-       {items.map((item : itemProps) => <Link key={item.name} to={item.to} name={item.name}/>)}
+       {items.map((item : itemProps) => <Link key={item.name} to={item.to} >{item.name}</Link>)}
     </TabBox>
   )
 }
