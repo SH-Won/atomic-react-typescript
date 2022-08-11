@@ -16,8 +16,8 @@ const CommonButton = styled.button`
   transition: transform 200ms ease 0s, background 200ms ease 0s;
   text-align: center;
 `;
-const Button = ({text,onClick}) => {
-  return <CommonButton>{text}</CommonButton>
+const Button = ({ text, onClick }) => {
+  return <CommonButton>{text}</CommonButton>;
 };
 
 export default Button;
