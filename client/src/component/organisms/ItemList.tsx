@@ -29,7 +29,7 @@ const ItemList = ({items,lastIndexRef} :any) => {
   console.log('itemList');
   return (
     <FlexBox >
-        {items.map((item : itemProps,index : number) => <Item lastIndexRef={index === lastIndex ? lastIndexRef : null} item={item}/>)}
+        {items.map((item : itemProps,index : number) => <Item key={item._id} lastIndexRef={index === lastIndex ? lastIndexRef : null} item={item}/>)}
     </FlexBox>
   )
 }
