@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Title from '../atoms/Title';
 import Item from '../molecules/Item';
 // interface itemProps{
 //   category:number,
@@ -21,17 +20,17 @@ align-items : center;
 width:100%;
 overflow-x : scroll;
 overflow-y :hidden;
+opacity : 1;
+transition: opacity 1s;
 `;
 
 const ItemList = ({items,lastIndexRef} :any) => {
   const lastIndex = items.length - 1;
+  console.log('itemList');
   return (
-    <>
-    <Title text={'인기'} size={'large'}/>
-    <FlexBox>
+    <FlexBox >
         {items.map((item : itemProps,index : number) => <Item lastIndexRef={index === lastIndex ? lastIndexRef : null} item={item}/>)}
     </FlexBox>
-    </>
   )
 }
 

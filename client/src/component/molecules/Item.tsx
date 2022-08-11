@@ -11,7 +11,7 @@ interface ItemProps extends Object{
 const ItemCard = styled.article`
   display: flex;
   flex-direction: column;
-  flex: 0 0 20%;
+  flex: 0 0 30%;
   margin:1rem;
 `;
 
@@ -21,7 +21,7 @@ const Item = ({item,lastIndexRef} : any) => {
     <ItemCard key={item.id} ref={lastIndexRef}>
       <Link to={`/posts/${item.id}`}>
        <ItemImage src={item.poster_path} />
-       <Title size={"small"} text={item.title} />
+       <Title size={"small"} text={item.title || item.name} />
       </Link>
     </ItemCard>
     
