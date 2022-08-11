@@ -6,7 +6,7 @@ interface matchProps{
 }
 const DetailPage = (props) =>{
     const id = props.match.params.id;
-    const {posts:post,loading} = useFetch(`detail?postId=${id}`);
+    const {posts:post,loading} = useFetch();
 
     if(loading) return <div>loading...</div>
      

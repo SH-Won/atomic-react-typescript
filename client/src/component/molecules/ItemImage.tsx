@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import {IMAGE_BASE_URL} from '../../../config';
 interface imageProps {
   src: string;
 }
@@ -12,7 +12,7 @@ const Image = styled.img`
 `;
 const Figure = styled.figure`
   position: relative;
-  padding-top: 75%;
+  padding-top: 100%;
   width: 100%;
   margin: 0;
 `;
@@ -20,7 +20,7 @@ const Figure = styled.figure`
 const ItemImage = ({ src }: imageProps) => {
   return (
     <Figure>
-      <Image src={src} />
+      <Image src={IMAGE_BASE_URL + src} />
     </Figure>
   );
 };

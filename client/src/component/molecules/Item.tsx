@@ -11,17 +11,17 @@ interface ItemProps extends Object{
 const ItemCard = styled.article`
   display: flex;
   flex-direction: column;
-  width: 25%;
+  flex: 0 0 20%;
   margin:1rem;
 `;
 
-const Item = ({item}) => {
+const Item = ({item,lastIndexRef} : any) => {
   return (
 
-    <ItemCard key={item._id} >
-      <Link to={`/posts/${item._id}`}>
-       <ItemImage src={item.imageUrls[0]} />
-       <Title size={"large"} text={item.title} />
+    <ItemCard key={item.id} ref={lastIndexRef}>
+      <Link to={`/posts/${item.id}`}>
+       <ItemImage src={item.poster_path} />
+       <Title size={"small"} text={item.title} />
       </Link>
     </ItemCard>
     
