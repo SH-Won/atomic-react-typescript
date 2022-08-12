@@ -13,7 +13,7 @@ const Image = styled.img`
 `;
 const Figure = styled.figure`
   position: relative;
-  padding-top: 100%;
+  padding-top: 130%;
   width: 100%;
   margin: 0;
   overflow: hidden;

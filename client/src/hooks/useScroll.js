@@ -1,12 +1,13 @@
 import React, { useRef, useCallback } from "react";
 
-const useScroll = (loading, loadMore) => {
+const useScroll = (loading, loadMore = null) => {
   const observer = useRef();
 
   const handleScroll = ([entry], ob) => {
     if (entry.isIntersecting) {
-      console.log("intersecting");
+      if(loadMore !== null){
       loadMore();
+      }
       ob.unobserve(entry.target);
     }
   };
@@ -21,7 +22,6 @@ const useScroll = (loading, loadMore) => {
     },
     [loading]
   );
-  console.log("observe");
   return {
     lastIndexRef,
   };

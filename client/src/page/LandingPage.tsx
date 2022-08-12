@@ -14,6 +14,10 @@ const Item = (props) => {
   const [filter, setFilter] = useState({
     ...props.info,
   });
+  const [pageLoading,setPageLoading] = useState(true);
+  const [selectedIndex,setSelectedIndex] = useState(0);
+  
+  
   const url = makeURL(filter);
   const { loading, posts } = useFetch(url, filter.category);
 
@@ -21,16 +25,17 @@ const Item = (props) => {
     setFilter((prevQuery) => ({ ...prevQuery, page: prevQuery.page + 1 }));
   };
   const handleSelect = (category: string) => {
-    const newFilter = {
-      ...filter,
-      category,
-      page: 1,
-    };
-    setFilter(newFilter);
+    setFilter((prevFilter) => ({...prevFilter,category, page:1}))
+    // setSelectedIndex()
   };
+  useEffect(() => {
+     if(!loading){
+       setPageLoading(false);
+     }
+  },[loading]);
 
   const { lastIndexRef } = useScroll(loading, loadMore);
-  if (loading) return <div>loading...</div>;
+  if (pageLoading) return <div>loading...</div>;
   return (
     <ItemContainer
       headerProps={props.headerProps}
@@ -75,10 +80,12 @@ const tvProps = {
 };
 
 const LandingPage = () => {
+  
+  
   return (
     <>
       <Item {...movieProps} />
-      <Item {...tvProps} />
+      <Item  {...tvProps} />
     </>
   );
 };

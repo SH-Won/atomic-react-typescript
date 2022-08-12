@@ -11,6 +11,7 @@ const useFetch = (url, filterCategory) => {
   const fetchData = async () => {
     try {
       // const fullURL = `${MOVIE_URL}movie/popular?api_key=${API_KEY}&language=${query.language}&page=${query.page}`
+      setLoading(true);
       const res = await fetch(url);
       if (res.ok) {
         const json = await res.json();
@@ -24,11 +25,12 @@ const useFetch = (url, filterCategory) => {
       }
     } catch (e) {}
   };
-  const fetchDetailData = async () => {};
+
   useEffect(() => {
     fetchData();
   }, [url]);
-  console.log(posts);
+  // console.log('----------')
+  // console.log(category,filterCategory);
   return {
     loading,
     posts,

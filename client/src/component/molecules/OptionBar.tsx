@@ -50,7 +50,7 @@ const OptionBar = ({ options, onClick }) => {
   const [childLeft, setChildLeft] = useState(null);
   const [childWidth, setChildWidth] = useState(null);
   const optionRefs = useRef<HTMLDivElement>();
-
+ 
   const handleSelected = (index: number, category: string) => {
     if (selectedIndex === index) return;
     setSelectedIndex(index);
