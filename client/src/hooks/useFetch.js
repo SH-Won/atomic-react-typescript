@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { MOVIE_URL, API_KEY } from "../../config";
+
 
 // const fullURL = `https://blog-sh.herokuapp.com/api/posts/${url}`;
 // const fullURL = `http://localhost:5000/api/posts/${url}`
 // const infoEndpoint = `${MOVIE_URL}movie/${movieId}?api_key=${API_KEY}`
-const useFetch = (url, filterCategory) => {
+const useFetch = (url, filterCategory, lazy = null) => {
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [category, setCategory] = useState(null);
@@ -18,6 +18,13 @@ const useFetch = (url, filterCategory) => {
         if (category === filterCategory) {
           setPosts((prevPost) => [...prevPost, ...json.results]);
         } else {
+          if (lazy) {
+            await new Promise((res, rej) => {
+              setTimeout(() => {
+                res("ok");
+              }, 1000);
+            });
+          }
           setPosts(json.results);
         }
         setCategory(filterCategory);
@@ -25,12 +32,11 @@ const useFetch = (url, filterCategory) => {
       }
     } catch (e) {}
   };
-
+   
   useEffect(() => {
     fetchData();
   }, [url]);
-  // console.log('----------')
-  // console.log(category,filterCategory);
+  console.log(posts);
   return {
     loading,
     posts,

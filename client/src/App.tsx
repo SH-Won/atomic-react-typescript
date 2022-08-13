@@ -12,12 +12,12 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <NavBar />
       <Suspense fallback={<div>loading...</div>}>
-        <div>
+        
           <Switch>
             <Route exact path="/movie/:id" component={DetailPage} />
             <Route path="/" component={LandingPage} />
           </Switch>
-        </div>
+        
       </Suspense>
       <GlobalStyle />
     </ThemeProvider>

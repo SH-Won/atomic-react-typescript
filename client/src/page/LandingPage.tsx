@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React,{ useState, useEffect, useMemo, useCallback } from "react";
 import ItemContainer from "../component/templates/ItemContainer";
 import useFetch from "../hooks/useFetch";
 import useScroll from "../hooks/useScroll";
 import { API_KEY, MOVIE_URL } from "../../config";
+import LandingIntro from '../component/organisms/LandingIntro';
 
 const makeURL = (filter) => {
   let { main, language, page, category } = filter;
@@ -14,25 +15,30 @@ const Item = (props) => {
   const [filter, setFilter] = useState({
     ...props.info,
   });
-  const [pageLoading,setPageLoading] = useState(true);
-  const [selectedIndex,setSelectedIndex] = useState(0);
-  
-  
+  const [pageLoading, setPageLoading] = useState(true);
+  const [aniMode, setAniMode] = useState(true);
+
   const url = makeURL(filter);
-  const { loading, posts } = useFetch(url, filter.category);
+  const { loading, posts } = useFetch(url, filter.category, filter.lazy);
 
   const loadMore = () => {
-    setFilter((prevQuery) => ({ ...prevQuery, page: prevQuery.page + 1 }));
+    setFilter((prevQuery) => ({ ...prevQuery, page: prevQuery.page + 1, lazy:false }));
   };
   const handleSelect = (category: string) => {
-    setFilter((prevFilter) => ({...prevFilter,category, page:1}))
-    // setSelectedIndex()
+    setFilter((prevFilter) => ({
+      ...prevFilter,
+      category,
+      page: 1,
+      lazy: true,
+    }));
+    setAniMode(false);
   };
   useEffect(() => {
-     if(!loading){
-       setPageLoading(false);
-     }
-  },[loading]);
+    if (!loading) {
+      setPageLoading(false);
+      setAniMode(true);
+    }
+  }, [loading]);
 
   const { lastIndexRef } = useScroll(loading, loadMore);
   if (pageLoading) return <div>loading...</div>;
@@ -42,6 +48,7 @@ const Item = (props) => {
       posts={posts}
       handleSelect={handleSelect}
       lastIndexRef={lastIndexRef}
+      aniMode={aniMode}
     />
   );
 };
@@ -80,12 +87,11 @@ const tvProps = {
 };
 
 const LandingPage = () => {
-  
-  
   return (
     <>
+      <LandingIntro/>
       <Item {...movieProps} />
-      <Item  {...tvProps} />
+      <Item {...tvProps} />
     </>
   );
 };

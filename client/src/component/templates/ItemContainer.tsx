@@ -25,12 +25,12 @@ const Wrapper = styled.section`
 //   will-change : opacity;
 //   pointer-events : none;
 // }
-const ItemContainer = ({ posts, headerProps, handleSelect, lastIndexRef }) => {
+const ItemContainer = ({ posts, headerProps, handleSelect, lastIndexRef, aniMode }) => {
   
   return (
     <Wrapper>
       <ContainerHeader {...headerProps} onClick={handleSelect} />
-      <ItemList items={posts} lastIndexRef={lastIndexRef} />
+      <ItemList items={posts} lastIndexRef={lastIndexRef} aniMode={aniMode}/>
     </Wrapper>
   );
 };

@@ -1,5 +1,11 @@
-import React, { useState,useLayoutEffect, useRef, useEffect } from "react";
-import styled, { keyframes,css } from "styled-components";
+import React, {
+  useState,
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useEffect,
+} from "react";
+import styled, { keyframes, css } from "styled-components";
 import Item from "../molecules/Item";
 // interface itemProps{
 //   category:number,
@@ -11,7 +17,7 @@ import Item from "../molecules/Item";
 // }
 // interface itemProps{
 //   [key : string ]: string | boolean | number | number[] ;
-  
+
 // }
 const fadeInOut = keyframes`
 0%{
@@ -23,11 +29,11 @@ const fadeInOut = keyframes`
 100 %{
   opacity:1;
 }
-`
-interface flexProps{
-  opacity? : number;
-  transition? : string;
-  mount? : boolean
+`;
+interface flexProps {
+  opacity?: number;
+  transition?: string;
+  mount?: boolean;
 }
 const FlexBox = styled.div`
   display: flex;
@@ -37,7 +43,7 @@ const FlexBox = styled.div`
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
-  
+  opacity: 0;
   &::-webkit-scrollbar {
     width: 30%;
     height: 0.4rem;
@@ -46,65 +52,42 @@ const FlexBox = styled.div`
     border-radius: 1rem;
     background: #ccc;
   }
-  transition : all 1s linear;
-   opacity : ${({mount} : flexProps) => mount ? '1' : '0'}
-  
-  
+  transition: all 1s linear;
+  opacity: ${({ mount }: flexProps) => (mount ? "1" : "0")};
+  pointer-events: ${({ mount }: flexProps) => (mount ? "auto" : "none")};
+  cursor: pointer;
 `;
 
-const ItemList = ({ items, lastIndexRef }: any) => {
-  const [mount,setMount] = useState(false)
-  const [renders,setRenders] = useState([]);
-  const [visible,setVisible] =useState(false);
+const ItemList = ({ items, lastIndexRef, aniMode }: any) => {
+  const [mount, setMount] = useState(false);
+  const [visible, setVisible] = useState(true);
   const flexBoxRef = useRef<HTMLDivElement>();
   const lastIndex = items.length - 1;
-  
-  // useLayoutEffect(() =>{
-  //   //  mount.current = true;
-  //    setMount(true);
-  //    return () => {
-  //      console.log('layout unmount')
-       
-  //    }
-  // },[items])
 
-  useEffect(() =>{
-    setMount(true);
-    setTimeout(()=>{
-    setRenders(items)
-    },500)
-    
-    return () => {
-      console.log('unmount')
-      setTimeout(() =>{
-        setMount(false);
-      },0)
-      
+  useEffect(() => {
+    if (aniMode) {
+
+      setMount(true);
     }
-  },[items]);
-  
-  // console.log(items);
-
+    if (!aniMode) {
+      setMount(false);
+    }
+  }, [aniMode]);
+ 
   const renderItems = (mount) => (
     <FlexBox ref={flexBoxRef} mount={mount}>
-      {renders.map((item, index) => (
+      {items.map((item, index) => (
         <React.Fragment key={item.title || item.name}>
-        <Item
-          lastIndexRef={index === lastIndex ? lastIndexRef : null}
-          item={item}
-        />
+          <Item
+            lastIndexRef={index === lastIndex ? lastIndexRef : null}
+            item={item}
+          />
         </React.Fragment>
       ))}
     </FlexBox>
-  )
-
-  //  console.log(mount,'itemList');
-  return (
-    <>
-    {renderItems(mount)}
-    {console.log(mount)}
-    </>
   );
+
+  return <>{renderItems(mount)}</>;
 };
 
 export default ItemList;

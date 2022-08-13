@@ -22,7 +22,7 @@ const Item = ({ item, lastIndexRef }: any) => {
     <ItemCard  ref={lastIndexRef} >
       <Link to={`/posts/${item.id}`}>
         <ItemImage src={item.poster_path} />
-        <Title size={""} text={item.title || item.name} />
+        <Title size={""} text={item.title || item.name} fontSize={'0.7rem'} fontWeight={''}/>
       </Link>
     </ItemCard>
   );
