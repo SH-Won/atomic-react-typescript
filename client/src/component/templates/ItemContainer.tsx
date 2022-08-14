@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import styled from "styled-components";
 import ContainerHeader from "../organisms/ContainerHeader";
-import ItemList from "../organisms/ItemList";
+import AnimationItemList from "../organisms/AnimationItemList";
 
 const Wrapper = styled.section`
   display: flex;
@@ -30,7 +30,7 @@ const ItemContainer = ({ posts, headerProps, handleSelect, lastIndexRef, aniMode
   return (
     <Wrapper>
       <ContainerHeader {...headerProps} onClick={handleSelect} />
-      <ItemList items={posts} lastIndexRef={lastIndexRef} aniMode={aniMode}/>
+      <AnimationItemList items={posts} lastIndexRef={lastIndexRef} aniMode={aniMode}/>
     </Wrapper>
   );
 };

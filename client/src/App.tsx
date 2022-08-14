@@ -5,8 +5,10 @@ import theme from "./styles/theme";
 import GlobalStyle from "./styles/GlobalStyle";
 import NavBar from "./component/organisms/NavBar";
 
+
 const LandingPage = lazy(() => import("./page/LandingPage"));
 const DetailPage = lazy(() => import("./page/DetailPage"));
+const SearchDetailPage = lazy(() => import('./page/SearchDetailPage'))
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
@@ -15,7 +17,8 @@ const App = () => {
         
           <Switch>
             <Route exact path="/movie/:id" component={DetailPage} />
-            <Route path="/" component={LandingPage} />
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path='/search/:query' component={SearchDetailPage}/>
           </Switch>
         
       </Suspense>

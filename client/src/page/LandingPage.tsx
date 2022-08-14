@@ -20,7 +20,7 @@ const Item = (props) => {
 
   const url = makeURL(filter);
   const { loading, posts } = useFetch(url, filter.category, filter.lazy);
-
+  console.log(url);
   const loadMore = () => {
     setFilter((prevQuery) => ({ ...prevQuery, page: prevQuery.page + 1, lazy:false }));
   };

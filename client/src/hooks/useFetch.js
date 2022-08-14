@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 // const fullURL = `https://blog-sh.herokuapp.com/api/posts/${url}`;
 // const fullURL = `http://localhost:5000/api/posts/${url}`
 // const infoEndpoint = `${MOVIE_URL}movie/${movieId}?api_key=${API_KEY}`
-const useFetch = (url, filterCategory, lazy = null) => {
+const useFetch = (url, filterCategory=false, lazy = null) => {
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
   const [category, setCategory] = useState(null);
@@ -19,10 +19,11 @@ const useFetch = (url, filterCategory, lazy = null) => {
           setPosts((prevPost) => [...prevPost, ...json.results]);
         } else {
           if (lazy) {
+
             await new Promise((res, rej) => {
               setTimeout(() => {
                 res("ok");
-              }, 1000);
+              }, 500);
             });
           }
           setPosts(json.results);
