@@ -1,5 +1,6 @@
 import React from 'react'
 import { MOVIE_URL,API_KEY } from '../../config';
+import CircleProgress from '../component/molecules/CircleProgress';
 import useFetch from '../hooks/useFetch';
 const SearchDetailPage = (props) => {
     const query = props.match.params.query;
@@ -10,7 +11,7 @@ const SearchDetailPage = (props) => {
 
     console.log(movie);
   return (
-    <div>SearchDetailPage</div>
+    <CircleProgress percent={80}/>
   )
 }
 

@@ -19,17 +19,7 @@ import Item from "../molecules/Item";
 //   [key : string ]: string | boolean | number | number[] ;
 
 // }
-const fadeInOut = keyframes`
-0%{
-  opacity:1;
-}
-50% {
-  opacity : 0;
-}
-100 %{
-  opacity:1;
-}
-`;
+
 interface flexProps {
   opacity?: number;
   transition?: string;

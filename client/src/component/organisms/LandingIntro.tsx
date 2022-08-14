@@ -19,8 +19,8 @@ const Wrapper = styled.section`
   flex-direction: column;
   align-items: center;
   min-height: 300px;
-  height: calc(100vh / 2.5);
-  max-height: 360px;
+  /* height: calc(100vh / 2.5); */
+  /* max-height: 360px; */
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -30,7 +30,7 @@ const Wrapper = styled.section`
     ` linear-gradient(to right, rgba(3,37,65, 0.8) 0%, rgba(3,37,65, 0.1) 100%), url(${props.url})`};
 `;
 const Content = styled.div`
-  padding: 2rem 0 0 2rem;
+  padding: 2rem 0 2rem 2rem;
 `;
 // https://api.themoviedb.org/3/search/movie?api_key={api_key}&query=Jack+Reacher
 const LandingIntro = () => {
