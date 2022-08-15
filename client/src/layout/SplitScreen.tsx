@@ -6,9 +6,11 @@ interface PaneProps {
 }
 const Container = styled.section`
     display: flex;
+    width:100%;
 `;
 const Pane = styled.div<PaneProps>`
     flex: ${props => props.flexWeight};
+    overflow : auto;
     padding: 2rem;
 `;
 

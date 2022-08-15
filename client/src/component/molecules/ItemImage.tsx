@@ -22,7 +22,7 @@ const Figure = styled.figure`
 const ItemImage = ({ src }: imageProps) => {
     return (
         <Figure>
-            <Image src={IMAGE_BASE_URL + src} />
+            <Image src={src !== null ? IMAGE_BASE_URL + src : ''} />
         </Figure>
     );
 };

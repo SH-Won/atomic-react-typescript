@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import ContainerHeader from '../organisms/ContainerHeader';
 import AnimationItemList from '../organisms/AnimationItemList';
+import Item from '../molecules/Item';
 
 const Wrapper = styled.section`
     display: flex;
@@ -24,11 +25,25 @@ const Wrapper = styled.section`
 //   will-change : opacity;
 //   pointer-events : none;
 // }
+
 const ItemContainer = ({ posts, headerProps, handleSelect, lastIndexRef, aniMode }) => {
+    const lastIndex = posts.length - 1; 
+
+    const renderItems = () => (
+        <>
+        {posts.map((item, index) => (
+            <React.Fragment key={item.title || item.name}>
+                <Item lastIndexRef={index === lastIndex ? lastIndexRef : null} item={item} />
+            </React.Fragment>
+        ))}
+        </>
+    )
     return (
         <Wrapper>
             <ContainerHeader {...headerProps} onClick={handleSelect} />
-            <AnimationItemList items={posts} lastIndexRef={lastIndexRef} aniMode={aniMode} />
+            <AnimationItemList  aniMode={aniMode} >
+                {renderItems()}
+             </AnimationItemList>
         </Wrapper>
     );
 };
