@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-import styled from "styled-components";
-import ContainerHeader from "../organisms/ContainerHeader";
-import AnimationItemList from "../organisms/AnimationItemList";
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import styled from 'styled-components';
+import ContainerHeader from '../organisms/ContainerHeader';
+import AnimationItemList from '../organisms/AnimationItemList';
 
 const Wrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  margin: 1rem;
-  
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
 `;
 
 // ::after{
@@ -26,13 +25,12 @@ const Wrapper = styled.section`
 //   pointer-events : none;
 // }
 const ItemContainer = ({ posts, headerProps, handleSelect, lastIndexRef, aniMode }) => {
-  
-  return (
-    <Wrapper>
-      <ContainerHeader {...headerProps} onClick={handleSelect} />
-      <AnimationItemList items={posts} lastIndexRef={lastIndexRef} aniMode={aniMode}/>
-    </Wrapper>
-  );
+    return (
+        <Wrapper>
+            <ContainerHeader {...headerProps} onClick={handleSelect} />
+            <AnimationItemList items={posts} lastIndexRef={lastIndexRef} aniMode={aniMode} />
+        </Wrapper>
+    );
 };
 
 export default ItemContainer;
