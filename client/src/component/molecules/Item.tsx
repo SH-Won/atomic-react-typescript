@@ -26,10 +26,10 @@ const PercentWrapper = styled.div`
     left: 10px;
 `;
 
-const Item = ({ item, lastIndexRef = null }: any) => {
+const Item = ({ item, category, lastIndexRef = null }: any) => {
     return (
         <ItemCard ref={lastIndexRef}>
-            <Link to={`/movie/${item.id}`}>
+            <Link to={`/${category}/${item.id}`}>
                 <ItemImage src={item.poster_path} />
                 <Content>
                     <PercentWrapper>

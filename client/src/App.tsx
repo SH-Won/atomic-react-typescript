@@ -14,6 +14,7 @@ const App = () => {
             <NavBar />
             <Suspense fallback={<div>loading...</div>}>
                 <Switch>
+                    <Route exact path="/tv/:id" component={DetailPage} />
                     <Route exact path="/movie/:id" component={DetailPage} />
                     <Route exact path="/" component={LandingPage} />
                     <Route exact path="/search/:query" component={SearchDetailPage} />

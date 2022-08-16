@@ -42,7 +42,7 @@ const FlexBox = styled.div`
     cursor: pointer;
 `;
 
-const AnimationItemList = ({ children,items, lastIndexRef, aniMode }: any) => {
+const AnimationItemList = ({ children, items, lastIndexRef, aniMode }: any) => {
     // const [mount, setMount] = useState(false);
     // const [visible, setVisible] = useState(true);
     // const lastIndex = items.length - 1;
@@ -67,11 +67,7 @@ const AnimationItemList = ({ children,items, lastIndexRef, aniMode }: any) => {
     // );
 
     // return <>{renderItems(aniMode)}</>;
-    return (
-        <FlexBox mount={aniMode}>
-            {children}
-        </FlexBox>
-    )
+    return <FlexBox mount={aniMode}>{children}</FlexBox>;
 };
 
 export default AnimationItemList;

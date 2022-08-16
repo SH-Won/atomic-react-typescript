@@ -5,7 +5,7 @@ import OptionBar from '../molecules/OptionBar';
 
 const Wrapper = styled.div`
     display: flex;
-    width: 70%;
+    width: 90%;
     align-items: center;
     margin: 0.8rem 1rem;
 `;

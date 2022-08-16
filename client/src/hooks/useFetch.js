@@ -9,7 +9,6 @@ const useFetch = (url, filterCategory = false, lazy = null) => {
     const [category, setCategory] = useState(null);
     const fetchData = async () => {
         try {
-            // const fullURL = `${MOVIE_URL}movie/popular?api_key=${API_KEY}&language=${query.language}&page=${query.page}`
             setLoading(true);
             const res = await fetch(url);
             if (res.ok) {
@@ -35,7 +34,7 @@ const useFetch = (url, filterCategory = false, lazy = null) => {
     useEffect(() => {
         fetchData();
     }, [url]);
-    console.log(posts);
+
     return {
         loading,
         posts,

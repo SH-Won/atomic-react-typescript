@@ -14,7 +14,8 @@ const Wrapper = styled.div`
 const List = styled.div`
     position: relative;
     border-radius: 30px;
-    padding: 0.25rem 1rem;
+    padding: 0.25rem 0.75rem;
+    box-sizing: border-box;
 `;
 interface SelectProps {
     selected?: boolean;
@@ -26,7 +27,7 @@ const Title = styled.h3`
         props.selected ? 'linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%)' : 'black'};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 1rem;
+    font-size: 0.9rem;
 `;
 const ItemBackGround = styled.div`
     position: absolute;
@@ -57,7 +58,6 @@ const OptionBar = ({ options, onClick }) => {
 
     useLayoutEffect(() => {
         const { current } = optionRefs;
-        const parentLeft = current.offsetLeft;
         const childLeftSize = {};
         const childWidthSize = {};
         current.childNodes.forEach((element, index) => {

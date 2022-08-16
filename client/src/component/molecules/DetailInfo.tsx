@@ -1,30 +1,56 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import CircleProgress from './CircleProgress';
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+const Div = styled.div`
+margin:.3rem 0;
 display:flex;
-flex-direction : column;
+justify-content : flex-start;
+`
+const Genre = styled.span`
+margin-right:.5rem;
+font-weight:500;
+`;
+const TagLine = styled.span`
+font-style:italic;
+opacity : 0.7;
+font-weight:600;
 `
 
+const DetailInfo = ({ post }) => {
+    const {
+        title,
+        genres,
+        production_companies,
+        overview,
+        original_title,
+        vote_average,
+        tagline,
+        status,
+        runtime,
+        release_date,
+        original_name,
+    } = post;
+    return (
+        <Container>
+            <h1>{original_title || original_name}</h1>
+            <Div>
+                {genres.map((genre, index) => (
+                    <Genre key={genre.id + index}>{genre.name}</Genre>
+                ))}
+            </Div>
+            <Div>
+                <CircleProgress percent={Math.floor(vote_average * 10)} />
+            </Div>
+            <TagLine>{tagline}</TagLine>
+            <h2 style={{margin:'1rem 0'}}>개요</h2>
+            <p>{overview}</p>
+        </Container>
+    );
+};
 
-const DetailInfo = ({post}) => {
-    const {title,genres,production_companies,overview,original_title,vote_average,tagline,status,runtime,release_date} = post;
-  return (
-    <Container>
-        <h1>{original_title}</h1>
-        <ul>
-           {genres.map((genre,index) => <li key={genre.id + index}>{genre.name}</li>)}
-        </ul>
-        <div style ={{display:'flex',justifyContent :'flex-start'}}>
-        <CircleProgress percent={Math.floor(vote_average * 10)}/>
-        </div>
-        <span>{tagline}</span>
-        <h2>Overview</h2>
-        <p>{overview}</p>
-
-    </Container>
-  )
-}
-
-export default DetailInfo
+export default DetailInfo;

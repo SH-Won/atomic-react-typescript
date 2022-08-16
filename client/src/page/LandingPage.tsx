@@ -20,7 +20,7 @@ const Item = (props) => {
 
   const url = makeURL(filter);
   const { loading, posts } = useFetch(url, filter.category, filter.lazy);
-  console.log(url);
+
   const loadMore = () => {
     setFilter((prevQuery) => ({ ...prevQuery, page: prevQuery.page + 1, lazy:false }));
   };
@@ -45,6 +45,7 @@ const Item = (props) => {
   return (
     <ItemContainer
       headerProps={props.headerProps}
+      category={props.info.main}
       posts={posts}
       handleSelect={handleSelect}
       lastIndexRef={lastIndexRef}

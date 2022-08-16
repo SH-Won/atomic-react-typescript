@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ContainerHeader from '../organisms/ContainerHeader';
 import AnimationItemList from '../organisms/AnimationItemList';
@@ -26,24 +26,22 @@ const Wrapper = styled.section`
 //   pointer-events : none;
 // }
 
-const ItemContainer = ({ posts, headerProps, handleSelect, lastIndexRef, aniMode }) => {
-    const lastIndex = posts.length - 1; 
+const ItemContainer = ({ posts, headerProps, category, handleSelect, lastIndexRef, aniMode }) => {
+    const lastIndex = posts.length - 1;
 
     const renderItems = () => (
         <>
-        {posts.map((item, index) => (
-            <React.Fragment key={item.title || item.name}>
-                <Item lastIndexRef={index === lastIndex ? lastIndexRef : null} item={item} />
-            </React.Fragment>
-        ))}
+            {posts.map((item, index) => (
+                <React.Fragment key={item.title || item.name}>
+                    <Item category={category} lastIndexRef={index === lastIndex ? lastIndexRef : null} item={item} />
+                </React.Fragment>
+            ))}
         </>
-    )
+    );
     return (
         <Wrapper>
             <ContainerHeader {...headerProps} onClick={handleSelect} />
-            <AnimationItemList  aniMode={aniMode} >
-                {renderItems()}
-             </AnimationItemList>
+            <AnimationItemList aniMode={aniMode}>{renderItems()}</AnimationItemList>
         </Wrapper>
     );
 };

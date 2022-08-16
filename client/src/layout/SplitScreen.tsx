@@ -1,29 +1,40 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+//    background-size: cover;
+// background-repeat: no-repeat;
+// background-image: url(/t/p/w1920_and_h800_multi_faces/suopoADq0k8YZr4dQXcU6pToj6s.jpg);
 
 interface PaneProps {
     flexWeight?: number;
 }
-const Container = styled.section`
+interface ContainerProps{
+    backgroundSize? : string;
+    backgroundRepeat? : string;
+    backgroundImg? : string;
+    
+}
+const Container = styled.section<ContainerProps>`
     display: flex;
-    width:100%;
+    width: 100%;
+    ${(props) => css`
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-image: ${props.backgroundImg};
+    `}
 `;
 const Pane = styled.div<PaneProps>`
     flex: ${props => props.flexWeight};
-    overflow : auto;
+    overflow: auto;
     padding: 2rem;
 `;
 
-export const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 }) => {
+export const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1, backgroundImg }) => {
     const [left, right] = children;
     return (
-        <Container>
-            <Pane flexWeight={leftWeight}>
-                {left}
-            </Pane>
-            <Pane flexWeight ={rightWeight}>
-                {right}
-            </Pane>
+        <Container backgroundImg={backgroundImg}>
+            <Pane flexWeight={leftWeight}>{left}</Pane>
+            <Pane flexWeight={rightWeight}>{right}</Pane>
         </Container>
     );
 };
