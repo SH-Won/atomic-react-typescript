@@ -6,6 +6,7 @@ import useFetch from '../../hooks/useFetch';
 import ActorItem from '../molecules/ActorItem';
 import AnimationItemList from './AnimationItemList';
 import Title from '../atoms/Title';
+import DetailContentRight from '../molecules/DetailContentRight';
 
 interface ItemProps {
     id: number;
@@ -23,9 +24,10 @@ const LoadMoreBtn = styled.button`
     background: ${props => props.theme.darkBlue};
     color: ${props => props.theme.white};
 `;
-// const url = `${MOVIE_URL}movie/${id}?api_key=${API_KEY}`
-const DetailContent = ({ id }) => {
-    const url = `${MOVIE_URL}movie/${id}/credits?api_key=${API_KEY}&language=ko`;
+
+const DetailContent = ({ post, id, category }) => {
+    console.log(post);
+    const url = `${MOVIE_URL}${category}/${id}/credits?api_key=${API_KEY}`;
     const { posts: items, loading } = useFetch(url);
     const [itemLength, setItemLength] = useState(5);
 
@@ -47,7 +49,7 @@ const DetailContent = ({ id }) => {
         setItemLength(prevLength => prevLength + 5);
     };
     return (
-        <SplitScreen leftWeight={2.5} rightWeight={1} backgroundImg={''}>
+        <SplitScreen leftWeight={2.5} rightWeight={1}>
             <div>
                 <Title size={'large'} text={'출연진'} />
                 <AnimationItemList aniMode={true}>
@@ -55,7 +57,7 @@ const DetailContent = ({ id }) => {
                     {itemLength < castLength && <LoadMoreBtn onClick={loadMoreCasts}>더 보기</LoadMoreBtn>}
                 </AnimationItemList>
             </div>
-            <div>사이드</div>
+            <DetailContentRight post={post} />
         </SplitScreen>
     );
 };

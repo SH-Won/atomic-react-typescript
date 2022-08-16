@@ -12,6 +12,7 @@ interface ContainerProps{
     backgroundSize? : string;
     backgroundRepeat? : string;
     backgroundImg? : string;
+    backgroundColor? :string;
     
 }
 const Container = styled.section<ContainerProps>`
@@ -21,6 +22,7 @@ const Container = styled.section<ContainerProps>`
     background-size: cover; 
     background-repeat: no-repeat;
     background-image: ${props.backgroundImg};
+    background-color : ${props.backgroundColor};
     `}
 `;
 const Pane = styled.div<PaneProps>`
@@ -29,10 +31,10 @@ const Pane = styled.div<PaneProps>`
     padding: 2rem;
 `;
 
-export const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1, backgroundImg }) => {
+export const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 ,backgroundColor = '' }) => {
     const [left, right] = children;
     return (
-        <Container backgroundImg={backgroundImg}>
+        <Container backgroundColor={backgroundColor}>
             <Pane flexWeight={leftWeight}>{left}</Pane>
             <Pane flexWeight={rightWeight}>{right}</Pane>
         </Container>

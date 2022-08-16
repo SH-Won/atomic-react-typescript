@@ -5,12 +5,12 @@ import DetailInfo from '../molecules/DetailInfo';
 import ItemImage from '../molecules/ItemImage';
 
 const DetailIntro = ({ post }) => {
-    // url(/t/p/w1920_and_h800_multi_faces/suopoADq0k8YZr4dQXcU6pToj6s.jpg)
     console.log(post);
-    const backgroundImg = `url(${IMAGE_BASE_URL}${post.backdrop_path})`
+    const url = (IMAGE_BASE_URL + post.backdrop_path).replace(/w500/g, 'original');
+    const backgroundImg = `url(${url})`;
     return (
         <>
-            <SplitScreen leftWeight={1} rightWeight={2} backgroundImg={backgroundImg}>
+            <SplitScreen leftWeight={1} rightWeight={2} backgroundColor={'#f5f5f5'}>
                 <ItemImage src={post.poster_path} />
                 <DetailInfo post={post} />
             </SplitScreen>

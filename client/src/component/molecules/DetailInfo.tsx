@@ -7,19 +7,19 @@ const Container = styled.div`
     flex-direction: column;
 `;
 const Div = styled.div`
-margin:.3rem 0;
-display:flex;
-justify-content : flex-start;
-`
+    margin: 0.3rem 0;
+    display: flex;
+    justify-content: flex-start;
+`;
 const Genre = styled.span`
-margin-right:.5rem;
-font-weight:500;
+    margin-right: 0.5rem;
+    font-weight: 500;
 `;
 const TagLine = styled.span`
-font-style:italic;
-opacity : 0.7;
-font-weight:600;
-`
+    font-style: italic;
+    opacity: 0.7;
+    font-weight: 600;
+`;
 
 const DetailInfo = ({ post }) => {
     const {
@@ -47,8 +47,8 @@ const DetailInfo = ({ post }) => {
                 <CircleProgress percent={Math.floor(vote_average * 10)} />
             </Div>
             <TagLine>{tagline}</TagLine>
-            <h2 style={{margin:'1rem 0'}}>개요</h2>
-            <p>{overview}</p>
+            <h2 style={{ margin: '1rem 0' }}>개요</h2>
+            <p>{overview !== '' ? overview : '없음'}</p>
         </Container>
     );
 };

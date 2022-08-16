@@ -1,18 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Item from '../molecules/Item';
-// interface itemProps{
-//   category:number,
-//   description: string,
-//   imageUrl? : string,
-//   imageUrls : string[],
-//   title : string,
-//   _id : string,
-// }
-// interface itemProps{
-//   [key : string ]: string | boolean | number | number[] ;
 
-// }
 
 interface flexProps {
     opacity?: number;
@@ -42,31 +30,7 @@ const FlexBox = styled.div`
     cursor: pointer;
 `;
 
-const AnimationItemList = ({ children, items, lastIndexRef, aniMode }: any) => {
-    // const [mount, setMount] = useState(false);
-    // const [visible, setVisible] = useState(true);
-    // const lastIndex = items.length - 1;
-
-    // useEffect(() => {
-    //     if (aniMode) {
-    //         setMount(true);
-    //     }
-    //     if (!aniMode) {
-    //         setMount(false);
-    //     }
-    // }, [aniMode]);
-
-    // const renderItems = mount => (
-    //     <FlexBox  mount={mount}>
-    //         {items.map((item, index) => (
-    //             <React.Fragment key={item.title || item.name}>
-    //                 <Item lastIndexRef={index === lastIndex ? lastIndexRef : null} item={item} />
-    //             </React.Fragment>
-    //         ))}
-    //     </FlexBox>
-    // );
-
-    // return <>{renderItems(aniMode)}</>;
+const AnimationItemList = ({ children, aniMode }: any) => {
     return <FlexBox mount={aniMode}>{children}</FlexBox>;
 };
 

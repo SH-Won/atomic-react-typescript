@@ -43,7 +43,6 @@ const LandingIntro = () => {
     const onSubmit = e => {
         e.preventDefault();
         const query = searchValue.replace(/\s/g, '+');
-        // history.pushState(query,null,`/search/${query}`);
         location.href = `/search/${query}`;
     };
     return (
