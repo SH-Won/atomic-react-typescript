@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Title from '../atoms/Title';
-import OptionBar from '../molecules/OptionBar';
+import OptionBar, { LoadingOptionBar } from '../molecules/OptionBar';
 
 const Wrapper = styled.div`
     display: flex;
@@ -9,6 +9,15 @@ const Wrapper = styled.div`
     align-items: center;
     margin: 0.8rem 1rem;
 `;
+
+export const LoadingContainerHeader = ({options,text}) =>{
+    return (
+       <Wrapper>
+            <Title text={text} size={'large'} />
+            <LoadingOptionBar options={options}  />
+        </Wrapper>
+        )
+}
 const ContainerHeader = ({ options, text, onClick }) => {
     return (
         <Wrapper>

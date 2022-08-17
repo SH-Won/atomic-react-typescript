@@ -44,6 +44,19 @@ const ItemBackGround = styled.div`
 `;
 //cubic-bezier(0, 1.42, 0.81, 1.02)
 // visibility ${(props : SelectProps) => props.selected ? 'visible' : 'hidden'};
+export const LoadingOptionBar = ({options}) =>{
+    return (
+        <Wrapper >
+            {options.map((option, index) => (
+                <List key={option.name} >
+                    <Title selected={index === 0 ? true : false}>{option.name}</Title>
+                </List>
+            ))}
+           
+        </Wrapper>
+
+    )
+}
 const OptionBar = ({ options, onClick }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [childLeft, setChildLeft] = useState(null);

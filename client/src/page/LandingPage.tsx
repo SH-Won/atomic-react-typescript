@@ -1,10 +1,11 @@
-import React,{ useState, useEffect, useMemo, useCallback } from "react";
-import ItemContainer from "../component/templates/ItemContainer";
+import React,{ useState, useEffect, useMemo, useCallback, useRef } from "react";
+import ItemContainer, { LoadingItemContainer } from "../component/templates/ItemContainer";
 import useFetch from "../hooks/useFetch";
 import useScroll from "../hooks/useScroll";
 import { API_KEY, MOVIE_URL } from "../../config";
 import LandingIntro from '../component/organisms/LandingIntro';
-
+import * as Props from './LandingProps';
+import LazyComponent from '../hooks/LazyComponent';
 const makeURL = (filter) => {
   let { main, language, page, category } = filter;
 
@@ -12,18 +13,21 @@ const makeURL = (filter) => {
 };
 
 const Item = (props) => {
+  
   const [filter, setFilter] = useState({
     ...props.info,
   });
+  const url = makeURL(filter)
   const [pageLoading, setPageLoading] = useState(true);
   const [aniMode, setAniMode] = useState(true);
-
-  const url = makeURL(filter);
+ 
+ 
   const { loading, posts } = useFetch(url, filter.category, filter.lazy);
 
   const loadMore = () => {
     setFilter((prevQuery) => ({ ...prevQuery, page: prevQuery.page + 1, lazy:false }));
   };
+
   const handleSelect = (category: string) => {
     setFilter((prevFilter) => ({
       ...prevFilter,
@@ -33,16 +37,19 @@ const Item = (props) => {
     }));
     setAniMode(false);
   };
+  
+  
   useEffect(() => {
     if (!loading) {
       setPageLoading(false);
       setAniMode(true);
     }
   }, [loading]);
-
+  
   const { lastIndexRef } = useScroll(loading, loadMore);
-  if (pageLoading) return <div>loading...</div>;
+  // if (pageLoading) return <div ref={domRef}>loading...</div>;
   return (
+  
     <ItemContainer
       headerProps={props.headerProps}
       category={props.info.main}
@@ -51,48 +58,24 @@ const Item = (props) => {
       lastIndexRef={lastIndexRef}
       aniMode={aniMode}
     />
+    
   );
 };
 
-const movieProps = {
-  info: {
-    page: 1,
-    language: "ko",
-    main: "movie",
-    category: "popular",
-  },
-  headerProps: {
-    options: [
-      { name: "인기", category: "popular" },
-      { name: "최고 평점", category: "top_rated" },
-      { name: "현재 개봉중", category: "now_playing" },
-    ],
-    text: "영화",
-  },
-};
-const tvProps = {
-  info: {
-    page: 1,
-    language: "ko",
-    main: "tv",
-    category: "popular",
-  },
-  headerProps: {
-    options: [
-      { name: "인기", category: "popular" },
-      { name: "현재 상영중", category: "on_the_air" },
-      { name: "최고평점", category: "top_rated" },
-    ],
-    text: "TV",
-  },
-};
+
 
 const LandingPage = () => {
+ 
   return (
     <>
       <LandingIntro/>
-      <Item {...movieProps} />
-      <Item {...tvProps} />
+      <Item {...Props.movieProps} />
+      {/* <Item {...Props.tvProps} /> */}
+
+      <LazyComponent>
+        <LoadingItemContainer {...Props.tvProps}/>
+        <Item {...Props.tvProps}/>
+      </LazyComponent>
     </>
   );
 };

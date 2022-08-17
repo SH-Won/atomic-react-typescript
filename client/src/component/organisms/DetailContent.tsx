@@ -26,7 +26,6 @@ const LoadMoreBtn = styled.button`
 `;
 
 const DetailContent = ({ post, id, category }) => {
-    console.log(post);
     const url = `${MOVIE_URL}${category}/${id}/credits?api_key=${API_KEY}`;
     const { posts: items, loading } = useFetch(url);
     const [itemLength, setItemLength] = useState(5);
@@ -34,7 +33,7 @@ const DetailContent = ({ post, id, category }) => {
     if (loading) return <div>로딩중 입니다</div>;
 
     const castLength = items['cast'].length;
-
+    console.log(items);
     const renderItems = () => (
         <>
             {items['cast'].slice(0, itemLength).map(castItem => (

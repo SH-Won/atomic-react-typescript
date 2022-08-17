@@ -1,17 +1,21 @@
 import React, { ReactDOM, ReactElement } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Title from '../atoms/Title';
 import ItemImage from './ItemImage';
 import { Link } from 'react-router-dom';
 import CircleProgress from './CircleProgress';
 
-const ItemCard = styled.article`
+interface ItemCardProps{
+    isLoading? : boolean;
+}
+const ItemCard = styled.article<ItemCardProps>`
     display: flex;
     flex-direction: column;
     flex: 0 0 12%;
     max-width: 150px;
     margin: 1rem;
     min-width: 200px;
+    border : ${props => props.isLoading ? '1px solid black' : 'none'};
 `;
 const Content = styled.div`
     display: flex;
@@ -26,6 +30,20 @@ const PercentWrapper = styled.div`
     left: 10px;
 `;
 
+export const LoadingItem = () =>{
+    return (
+        <ItemCard isLoading={true}>
+                <ItemImage src={null}/>
+                <Content>
+                    <PercentWrapper>
+                        {/* <CircleProgress percent={item.vote_average * 10} /> */}
+                    </PercentWrapper>
+                   
+                </Content>
+            
+        </ItemCard>
+    )
+}
 const Item = ({ item, category, lastIndexRef = null }: any) => {
     return (
         <ItemCard ref={lastIndexRef}>

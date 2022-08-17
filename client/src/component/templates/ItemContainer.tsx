@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContainerHeader from '../organisms/ContainerHeader';
-import AnimationItemList from '../organisms/AnimationItemList';
-import Item from '../molecules/Item';
+import ContainerHeader, { LoadingContainerHeader } from '../organisms/ContainerHeader';
+import AnimationItemList, { LoadingAnimationItemList } from '../organisms/AnimationItemList';
+import Item, { LoadingItem } from '../molecules/Item';
+
 
 const Wrapper = styled.section`
     display: flex;
@@ -26,6 +27,24 @@ const Wrapper = styled.section`
 //   pointer-events : none;
 // }
 
+export const LoadingItemContainer = ({headerProps}) =>{
+
+    const renderItems = () => (
+        Array(5).fill(0).map((v,i) => (
+            <React.Fragment key={v+i}>
+            <LoadingItem />
+            </React.Fragment>
+        ))
+    )
+    return (
+        <Wrapper>
+            <LoadingContainerHeader {...headerProps}/>
+            <LoadingAnimationItemList>
+                {renderItems()}
+            </LoadingAnimationItemList>
+        </Wrapper>
+    )
+}
 const ItemContainer = ({ posts, headerProps, category, handleSelect, lastIndexRef, aniMode }) => {
     const lastIndex = posts.length - 1;
 

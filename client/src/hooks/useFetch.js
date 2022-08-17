@@ -20,7 +20,7 @@ const useFetch = (url, filterCategory = false, lazy = null) => {
                         await new Promise((res, rej) => {
                             setTimeout(() => {
                                 res('ok');
-                            }, 500);
+                            }, 400);
                         });
                     }
                     setPosts(json.results || json);
@@ -32,6 +32,7 @@ const useFetch = (url, filterCategory = false, lazy = null) => {
     };
 
     useEffect(() => {
+        if(url === '') return;
         fetchData();
     }, [url]);
 

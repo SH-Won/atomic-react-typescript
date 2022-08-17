@@ -29,6 +29,9 @@ const FlexBox = styled.div`
     pointer-events: ${({ mount }: flexProps) => (mount ? 'auto' : 'none')};
     cursor: pointer;
 `;
+export const LoadingAnimationItemList = ({children}) =>{
+    return <FlexBox mount={true}> {children}</FlexBox>
+}
 
 const AnimationItemList = ({ children, aniMode }: any) => {
     return <FlexBox mount={aniMode}>{children}</FlexBox>;
