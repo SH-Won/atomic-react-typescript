@@ -45,6 +45,7 @@ const ItemBackGround = styled.div`
 //cubic-bezier(0, 1.42, 0.81, 1.02)
 // visibility ${(props : SelectProps) => props.selected ? 'visible' : 'hidden'};
 export const LoadingOptionBar = ({options}) =>{
+
     return (
         <Wrapper >
             {options.map((option, index) => (

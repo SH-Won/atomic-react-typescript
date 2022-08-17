@@ -3,19 +3,22 @@ import React ,{ useState,useEffect, useRef} from 'react'
 const LazyComponent = ({children}) => {
   const [LoadingComponent,RealComponent] = children;
   const [loading,setLoading]= useState(true);
+  const [timer,setTimer] = useState(null);
   const componentRef = useRef();
   const observer = useRef();
 
   const showComponent = ([entry],ob) => {
-      console.log(entry);
       if(entry.isIntersecting){
-          setLoading(false);
+          setTimeout(() => {
+              setLoading(false);
+          },300)
           ob.unobserve(entry.target);
       }
   }
-
+  
+  
   useEffect(()=>{
-      observer.current = new IntersectionObserver(showComponent,{threshold:0.3});
+      observer.current = new IntersectionObserver(showComponent,{threshold:0.5});
       observer.current.observe(componentRef.current);
   },[])
  

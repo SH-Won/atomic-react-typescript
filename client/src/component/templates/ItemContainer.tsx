@@ -27,17 +27,17 @@ const Wrapper = styled.section`
 //   pointer-events : none;
 // }
 
-export const LoadingItemContainer = ({headerProps}) =>{
-
+export const LoadingItemContainer = ({headerProps,domRef}) =>{
     const renderItems = () => (
-        Array(5).fill(0).map((v,i) => (
+        Array(7).fill(0).map((v,i) => (
             <React.Fragment key={v+i}>
             <LoadingItem />
             </React.Fragment>
         ))
     )
+
     return (
-        <Wrapper>
+        <Wrapper ref={domRef}>
             <LoadingContainerHeader {...headerProps}/>
             <LoadingAnimationItemList>
                 {renderItems()}
@@ -45,7 +45,7 @@ export const LoadingItemContainer = ({headerProps}) =>{
         </Wrapper>
     )
 }
-const ItemContainer = ({ posts, headerProps, category, handleSelect, lastIndexRef, aniMode }) => {
+const ItemContainer = ({ domRef, posts, headerProps, category, handleSelect, lastIndexRef, aniMode }) => {
     const lastIndex = posts.length - 1;
 
     const renderItems = () => (
@@ -58,10 +58,13 @@ const ItemContainer = ({ posts, headerProps, category, handleSelect, lastIndexRe
         </>
     );
     return (
+        posts.length > 0 ?
         <Wrapper>
             <ContainerHeader {...headerProps} onClick={handleSelect} />
             <AnimationItemList aniMode={aniMode}>{renderItems()}</AnimationItemList>
         </Wrapper>
+        :
+        <LoadingItemContainer headerProps={headerProps} domRef={domRef}/>
     );
 };
 

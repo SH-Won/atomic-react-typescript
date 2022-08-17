@@ -1,5 +1,6 @@
 export const movieProps = {
     info: {
+      url:'',
       page: 1,
       language: "ko",
       main: "movie",
@@ -17,6 +18,7 @@ export const movieProps = {
 
 export const tvProps = {
     info: {
+      url:'',
       page: 1,
       language: "ko",
       main: "tv",

@@ -1,5 +1,5 @@
 import React, { ReactDOM, ReactElement } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import Title from '../atoms/Title';
 import ItemImage from './ItemImage';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,17 @@ import CircleProgress from './CircleProgress';
 interface ItemCardProps{
     isLoading? : boolean;
 }
+const fadeInOut = keyframes`
+0%{
+    opacity: 1;
+}
+50%{
+    opacity: 0.2;
+}
+100%{
+    opacity : 1;
+}
+`
 const ItemCard = styled.article<ItemCardProps>`
     display: flex;
     flex-direction: column;
@@ -15,7 +26,12 @@ const ItemCard = styled.article<ItemCardProps>`
     max-width: 150px;
     margin: 1rem;
     min-width: 200px;
-    border : ${props => props.isLoading ? '1px solid black' : 'none'};
+    ${props => props.isLoading && css`
+    background-color : #f5f5f5;
+    animation : ${fadeInOut} 1s ease infinite;
+    border-radius : 1rem;
+    `}
+    
 `;
 const Content = styled.div`
     display: flex;
