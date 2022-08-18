@@ -14,6 +14,7 @@ const LandingPage = () => {
             <ItemSection {...Props.movieProps} />
             <ItemSection {...Props.tvProps} />
             <ItemSection {...Props.upcommingProps} />
+            <ItemSection {...Props.trendingProps} />
         </>
     );
 };

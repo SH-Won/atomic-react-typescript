@@ -64,7 +64,7 @@ const Item = ({ item, category, lastIndexRef = null }: any) => {
                 <ItemImage src={item.poster_path} />
                 <Content>
                     <PercentWrapper>
-                        <CircleProgress percent={item.vote_average * 10} />
+                        <CircleProgress percent={Math.floor(item.vote_average * 10)} />
                     </PercentWrapper>
                     <Title size={''} text={item.title || item.name} fontSize={'1rem'} fontWeight={''} />
                 </Content>

@@ -5,7 +5,9 @@ import useScroll from '../hooks/useScroll';
 const makeURL = filter => {
     let { main, language, page, category } = filter;
 
-    return `${MOVIE_URL}${main}/${category}?api_key=${API_KEY}&language=${language}&page=${page}`;
+    return page !== null
+        ? `${MOVIE_URL}${main}/${category}?api_key=${API_KEY}&language=${language}&page=${page}`
+        : `${MOVIE_URL}${main}/${category}?api_key=${API_KEY}&language=${language}`;
 };
 
 const withFetch = Component => {
@@ -68,7 +70,7 @@ const withFetch = Component => {
 
         const componentProps = {
             domRef,
-            headerProps: props.headerProps,
+            containerProps: props.containerProps,
             category: props.info.main,
             posts,
             handleSelect,

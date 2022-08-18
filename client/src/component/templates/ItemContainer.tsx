@@ -4,10 +4,14 @@ import ContainerHeader, { LoadingContainerHeader } from '../organisms/ContainerH
 import AnimationItemList, { LoadingAnimationItemList } from '../organisms/AnimationItemList';
 import Item, { LoadingItem } from '../molecules/Item';
 
-const Wrapper = styled.section`
+interface WrapperProps {
+    backgroundColor?: string;
+}
+const Wrapper = styled.section<WrapperProps>`
     display: flex;
     flex-direction: column;
-    padding:1rem;
+    padding: 1rem;
+    background-color: ${props => props.backgroundColor};
 `;
 
 // ::after{
@@ -26,7 +30,7 @@ const Wrapper = styled.section`
 //   pointer-events : none;
 // }
 
-export const LoadingItemContainer = ({ headerProps, domRef }) => {
+export const LoadingItemContainer = ({ containerProps, domRef }) => {
     const renderItems = () =>
         Array(7)
             .fill(0)
@@ -37,13 +41,14 @@ export const LoadingItemContainer = ({ headerProps, domRef }) => {
             ));
 
     return (
-        <Wrapper ref={domRef}>
-            <LoadingContainerHeader {...headerProps} />
+        <Wrapper ref={domRef} backgroundColor={containerProps.backgroundColor}>
+            <LoadingContainerHeader {...containerProps.header} />
             <LoadingAnimationItemList>{renderItems()}</LoadingAnimationItemList>
         </Wrapper>
     );
 };
-const ItemContainer = ({ domRef, posts, headerProps, category, handleSelect, lastIndexRef, aniMode }) => {
+
+const ItemContainer = ({ domRef, posts, containerProps, category, handleSelect, lastIndexRef, aniMode }) => {
     const lastIndex = posts.length - 1;
 
     const renderItems = () => (
@@ -56,12 +61,12 @@ const ItemContainer = ({ domRef, posts, headerProps, category, handleSelect, las
         </>
     );
     return posts.length > 0 ? (
-        <Wrapper>
-            <ContainerHeader {...headerProps} onClick={handleSelect} />
+        <Wrapper backgroundColor={containerProps.backgroundColor}>
+            <ContainerHeader {...containerProps.header} onClick={handleSelect} />
             <AnimationItemList aniMode={aniMode}>{renderItems()}</AnimationItemList>
         </Wrapper>
     ) : (
-        <LoadingItemContainer headerProps={headerProps} domRef={domRef} />
+        <LoadingItemContainer containerProps={containerProps} domRef={domRef} />
     );
 };
 

@@ -7,6 +7,7 @@ interface titleProps {
     fontSize?: string;
     fontWeight?: string;
     margin?: string;
+    color?: string;
 }
 interface p {
     [key: string]: string;
@@ -17,6 +18,7 @@ const CommonTitle = styled.h2<p>`
         font-size: ${props.fontSize};
         font-weight: ${props.fontWeight};
         margin: ${props.margin};
+        color: ${props.color};
     `}
 `;
 const SmallTitle = styled.h3<p>`
@@ -24,6 +26,7 @@ const SmallTitle = styled.h3<p>`
         font-size: ${props.fontSize};
         font-weight: ${props.fontWeight};
         margin: ${props.margin};
+        color: ${props.color};
     `}
 `;
 const LargeTitle = styled.h1<p>`
@@ -31,13 +34,15 @@ const LargeTitle = styled.h1<p>`
         font-size: ${props.fontSize};
         font-weight: ${props.fontWeight};
         margin: ${props.margin};
+        color: ${props.color};
     `}
 `;
-const matchTitleSize = (size: string, text: string, fontSize, fontWeight, margin) => {
+const matchTitleSize = (size: string, text: string, fontSize, fontWeight, margin, color) => {
     const sizeProps = {
         fontSize,
         fontWeight,
         margin,
+        color,
     };
     switch (size) {
         case 'small':
@@ -48,8 +53,8 @@ const matchTitleSize = (size: string, text: string, fontSize, fontWeight, margin
             return <CommonTitle {...sizeProps}>{text}</CommonTitle>;
     }
 };
-const Title = ({ text, size, fontSize, fontWeight, margin }: titleProps) => {
-    return <>{matchTitleSize(size, text, fontSize, fontWeight, margin)}</>;
+const Title = ({ text, size, fontSize, fontWeight, margin, color }: titleProps) => {
+    return <>{matchTitleSize(size, text, fontSize, fontWeight, margin, color)}</>;
 };
 
 export default Title;

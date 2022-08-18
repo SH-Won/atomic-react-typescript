@@ -16,15 +16,18 @@ const List = styled.div`
     border-radius: 30px;
     padding: 0.25rem 0.75rem;
     box-sizing: border-box;
+    #f5f5f5
 `;
 interface SelectProps {
     selected?: boolean;
     left?: string;
     width?: string;
+    optionColor?: string;
+    optionSelectedColor?: string;
+    optionBackGroundColor?: string;
 }
 const Title = styled.h3`
-    background: ${(props: SelectProps) =>
-        props.selected ? 'linear-gradient(to right, #c0fecf 0%, #1ed5a9 100%)' : 'black'};
+    background: ${(props: SelectProps) => (props.selected ? props.optionSelectedColor : props.optionColor)};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 0.9rem;
@@ -36,27 +39,33 @@ const ItemBackGround = styled.div`
     height: 100%;
     width: 100%;
     z-index: -1;
-    background-color: ${props => props.theme.darkBlue};
+    background: ${props => (props.optionBackGroundColor ? props.optionBackGroundColor : props.theme.darkBlue)};
     border-radius: 30px;
     transition: all 0.3s linear;
     width: ${(props: SelectProps) => props.width};
     left: ${(props: SelectProps) => props.left};
 `;
-//cubic-bezier(0, 1.42, 0.81, 1.02)
-// visibility ${(props : SelectProps) => props.selected ? 'visible' : 'hidden'};
-export const LoadingOptionBar = ({ options }) => {
+
+export const LoadingOptionBar = ({ options, optionColor, optionSelectedColor, optionBackGroundColor }) => {
     return (
         <Wrapper>
             {options.map((option, index) => (
                 <List key={option.name}>
-                    <Title selected={index === 0 ? true : false}>{option.name}</Title>
+                    <Title
+                        optionColor={optionColor}
+                        optionSelectedColor={optionSelectedColor}
+                        selected={index === 0 ? true : false}
+                    >
+                        {option.name}
+                    </Title>
                 </List>
             ))}
+            {/* <ItemBackGround optionBackGroundColor={optionBackGroundColor}/> */}
         </Wrapper>
     );
 };
 
-const OptionBar = ({ options, onClick }) => {
+const OptionBar = ({ options, onClick, optionColor, optionSelectedColor, optionBackGroundColor }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [childLeft, setChildLeft] = useState(null);
     const [childWidth, setChildWidth] = useState(null);
@@ -84,11 +93,21 @@ const OptionBar = ({ options, onClick }) => {
         <Wrapper ref={optionRefs}>
             {options.map((option, index) => (
                 <List key={option.name} onClick={() => handleSelected(index, option.category, option.main)}>
-                    <Title selected={selectedIndex === index ? true : false}>{option.name}</Title>
+                    <Title
+                        optionColor={optionColor}
+                        optionSelectedColor={optionSelectedColor}
+                        selected={selectedIndex === index ? true : false}
+                    >
+                        {option.name}
+                    </Title>
                 </List>
             ))}
             {childWidth && (
-                <ItemBackGround width={`${childWidth[selectedIndex] + 2}px`} left={`${childLeft[selectedIndex]}px`} />
+                <ItemBackGround
+                    optionBackGroundColor={optionBackGroundColor}
+                    width={`${childWidth[selectedIndex] + 2}px`}
+                    left={`${childLeft[selectedIndex]}px`}
+                />
             )}
         </Wrapper>
     );

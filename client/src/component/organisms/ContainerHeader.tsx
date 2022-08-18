@@ -10,19 +10,47 @@ const Wrapper = styled.div`
     margin: 0.8rem 1rem;
 `;
 
-export const LoadingContainerHeader = ({ options, text }) => {
+export const LoadingContainerHeader = ({
+    options,
+    text,
+    textColor,
+    optionColor,
+    optionSelectedColor,
+    optionBackGroundColor,
+}) => {
+    const optionBarProps = {
+        options,
+        optionColor,
+        optionSelectedColor,
+        optionBackGroundColor,
+    };
     return (
         <Wrapper>
-            <Title text={text} size={'large'} />
-            <LoadingOptionBar options={options} />
+            <Title text={text} size={'large'} color={textColor} />
+            <LoadingOptionBar {...optionBarProps} />
         </Wrapper>
     );
 };
-const ContainerHeader = ({ options, text, onClick }) => {
+const ContainerHeader = ({
+    options,
+    text,
+    onClick,
+    textColor,
+    optionColor,
+    optionSelectedColor,
+    optionBackGroundColor,
+}) => {
+    const optionBarProps = {
+        options,
+        optionColor,
+        optionSelectedColor,
+        optionBackGroundColor,
+        onClick,
+    };
     return (
         <Wrapper>
-            <Title text={text} size={'large'} />
-            <OptionBar options={options} onClick={onClick} />
+            <Title text={text} size={'large'} color={textColor} />
+            <OptionBar {...optionBarProps} />
         </Wrapper>
     );
 };
