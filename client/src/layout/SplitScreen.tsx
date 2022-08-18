@@ -8,21 +8,20 @@ import styled, { css } from 'styled-components';
 interface PaneProps {
     flexWeight?: number;
 }
-interface ContainerProps{
-    backgroundSize? : string;
-    backgroundRepeat? : string;
-    backgroundImg? : string;
-    backgroundColor? :string;
-    
+interface ContainerProps {
+    backgroundSize?: string;
+    backgroundRepeat?: string;
+    backgroundImg?: string;
+    backgroundColor?: string;
 }
 const Container = styled.section<ContainerProps>`
     display: flex;
     width: 100%;
-    ${(props) => css`
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-image: ${props.backgroundImg};
-    background-color : ${props.backgroundColor};
+    ${props => css`
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: ${props.backgroundImg};
+        background-color: ${props.backgroundColor};
     `}
 `;
 const Pane = styled.div<PaneProps>`
@@ -31,7 +30,7 @@ const Pane = styled.div<PaneProps>`
     padding: 2rem;
 `;
 
-export const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1 ,backgroundColor = '' }) => {
+export const SplitScreen = ({ children, leftWeight = 1, rightWeight = 1, backgroundColor = '' }) => {
     const [left, right] = children;
     return (
         <Container backgroundColor={backgroundColor}>

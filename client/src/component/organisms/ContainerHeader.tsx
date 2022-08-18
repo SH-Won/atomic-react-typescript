@@ -10,14 +10,14 @@ const Wrapper = styled.div`
     margin: 0.8rem 1rem;
 `;
 
-export const LoadingContainerHeader = ({options,text}) =>{
+export const LoadingContainerHeader = ({ options, text }) => {
     return (
-       <Wrapper>
+        <Wrapper>
             <Title text={text} size={'large'} />
-            <LoadingOptionBar options={options}  />
+            <LoadingOptionBar options={options} />
         </Wrapper>
-        )
-}
+    );
+};
 const ContainerHeader = ({ options, text, onClick }) => {
     return (
         <Wrapper>

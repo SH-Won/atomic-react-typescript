@@ -44,30 +44,28 @@ const ItemBackGround = styled.div`
 `;
 //cubic-bezier(0, 1.42, 0.81, 1.02)
 // visibility ${(props : SelectProps) => props.selected ? 'visible' : 'hidden'};
-export const LoadingOptionBar = ({options}) =>{
-
+export const LoadingOptionBar = ({ options }) => {
     return (
-        <Wrapper >
+        <Wrapper>
             {options.map((option, index) => (
-                <List key={option.name} >
+                <List key={option.name}>
                     <Title selected={index === 0 ? true : false}>{option.name}</Title>
                 </List>
             ))}
-           
         </Wrapper>
+    );
+};
 
-    )
-}
 const OptionBar = ({ options, onClick }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [childLeft, setChildLeft] = useState(null);
     const [childWidth, setChildWidth] = useState(null);
     const optionRefs = useRef<HTMLDivElement>();
 
-    const handleSelected = (index: number, category: string) => {
+    const handleSelected = (index: number, category: string, main: string) => {
         if (selectedIndex === index) return;
         setSelectedIndex(index);
-        onClick(category);
+        onClick(category, main);
     };
 
     useLayoutEffect(() => {
@@ -85,7 +83,7 @@ const OptionBar = ({ options, onClick }) => {
     return (
         <Wrapper ref={optionRefs}>
             {options.map((option, index) => (
-                <List key={option.name} onClick={() => handleSelected(index, option.category)}>
+                <List key={option.name} onClick={() => handleSelected(index, option.category, option.main)}>
                     <Title selected={selectedIndex === index ? true : false}>{option.name}</Title>
                 </List>
             ))}

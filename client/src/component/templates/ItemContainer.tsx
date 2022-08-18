@@ -4,11 +4,10 @@ import ContainerHeader, { LoadingContainerHeader } from '../organisms/ContainerH
 import AnimationItemList, { LoadingAnimationItemList } from '../organisms/AnimationItemList';
 import Item, { LoadingItem } from '../molecules/Item';
 
-
 const Wrapper = styled.section`
     display: flex;
     flex-direction: column;
-    margin: 1rem;
+    padding:1rem;
 `;
 
 // ::after{
@@ -27,24 +26,23 @@ const Wrapper = styled.section`
 //   pointer-events : none;
 // }
 
-export const LoadingItemContainer = ({headerProps,domRef}) =>{
-    const renderItems = () => (
-        Array(7).fill(0).map((v,i) => (
-            <React.Fragment key={v+i}>
-            <LoadingItem />
-            </React.Fragment>
-        ))
-    )
+export const LoadingItemContainer = ({ headerProps, domRef }) => {
+    const renderItems = () =>
+        Array(7)
+            .fill(0)
+            .map((v, i) => (
+                <React.Fragment key={v + i}>
+                    <LoadingItem />
+                </React.Fragment>
+            ));
 
     return (
         <Wrapper ref={domRef}>
-            <LoadingContainerHeader {...headerProps}/>
-            <LoadingAnimationItemList>
-                {renderItems()}
-            </LoadingAnimationItemList>
+            <LoadingContainerHeader {...headerProps} />
+            <LoadingAnimationItemList>{renderItems()}</LoadingAnimationItemList>
         </Wrapper>
-    )
-}
+    );
+};
 const ItemContainer = ({ domRef, posts, headerProps, category, handleSelect, lastIndexRef, aniMode }) => {
     const lastIndex = posts.length - 1;
 
@@ -57,14 +55,13 @@ const ItemContainer = ({ domRef, posts, headerProps, category, handleSelect, las
             ))}
         </>
     );
-    return (
-        posts.length > 0 ?
+    return posts.length > 0 ? (
         <Wrapper>
             <ContainerHeader {...headerProps} onClick={handleSelect} />
             <AnimationItemList aniMode={aniMode}>{renderItems()}</AnimationItemList>
         </Wrapper>
-        :
-        <LoadingItemContainer headerProps={headerProps} domRef={domRef}/>
+    ) : (
+        <LoadingItemContainer headerProps={headerProps} domRef={domRef} />
     );
 };
 

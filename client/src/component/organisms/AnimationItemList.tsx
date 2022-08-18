@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 interface flexProps {
     opacity?: number;
     transition?: string;
@@ -29,9 +28,9 @@ const FlexBox = styled.div`
     pointer-events: ${({ mount }: flexProps) => (mount ? 'auto' : 'none')};
     cursor: pointer;
 `;
-export const LoadingAnimationItemList = ({children}) =>{
-    return <FlexBox mount={true}> {children}</FlexBox>
-}
+export const LoadingAnimationItemList = ({ children }) => {
+    return <FlexBox mount={true}> {children}</FlexBox>;
+};
 
 const AnimationItemList = ({ children, aniMode }: any) => {
     return <FlexBox mount={aniMode}>{children}</FlexBox>;

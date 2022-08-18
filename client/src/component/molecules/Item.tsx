@@ -5,8 +5,8 @@ import ItemImage from './ItemImage';
 import { Link } from 'react-router-dom';
 import CircleProgress from './CircleProgress';
 
-interface ItemCardProps{
-    isLoading? : boolean;
+interface ItemCardProps {
+    isLoading?: boolean;
 }
 const fadeInOut = keyframes`
 0%{
@@ -18,7 +18,7 @@ const fadeInOut = keyframes`
 100%{
     opacity : 1;
 }
-`
+`;
 const ItemCard = styled.article<ItemCardProps>`
     display: flex;
     flex-direction: column;
@@ -26,12 +26,13 @@ const ItemCard = styled.article<ItemCardProps>`
     max-width: 150px;
     margin: 1rem;
     min-width: 200px;
-    ${props => props.isLoading && css`
-    background-color : #f5f5f5;
-    animation : ${fadeInOut} 1s ease infinite;
-    border-radius : 1rem;
-    `}
-    
+    ${props =>
+        props.isLoading &&
+        css`
+            background-color: #f5f5f5;
+            animation: ${fadeInOut} 1s ease infinite;
+            border-radius: 1rem;
+        `}
 `;
 const Content = styled.div`
     display: flex;
@@ -46,20 +47,16 @@ const PercentWrapper = styled.div`
     left: 10px;
 `;
 
-export const LoadingItem = () =>{
+export const LoadingItem = () => {
     return (
         <ItemCard isLoading={true}>
-                <ItemImage src={null}/>
-                <Content>
-                    <PercentWrapper>
-                        {/* <CircleProgress percent={item.vote_average * 10} /> */}
-                    </PercentWrapper>
-                   
-                </Content>
-            
+            <ItemImage src={null} />
+            <Content>
+                <PercentWrapper>{/* <CircleProgress percent={item.vote_average * 10} /> */}</PercentWrapper>
+            </Content>
         </ItemCard>
-    )
-}
+    );
+};
 const Item = ({ item, category, lastIndexRef = null }: any) => {
     return (
         <ItemCard ref={lastIndexRef}>
