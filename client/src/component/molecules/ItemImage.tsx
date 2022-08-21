@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { IMAGE_BASE_URL } from '../../../config';
 interface imageProps {
-    src: string;
+    src: string | null;
 }
 const Image = styled.img`
     position: absolute;

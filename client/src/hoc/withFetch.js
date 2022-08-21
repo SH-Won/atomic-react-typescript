@@ -21,16 +21,16 @@ const withFetch = Component => {
         const [aniMode, setAniMode] = useState(true);
         const { loading, posts } = useFetch(filter.url, filter.category, filter.lazy);
 
-        const loadMore = () => {
+        const loadMore = ()  =>  {
             setFilter(prevQuery => ({
                 ...prevQuery,
                 page: prevQuery.page + 1,
                 lazy: false,
                 url: makeURL({ ...prevQuery, page: prevQuery.page + 1 }),
             }));
-        };
+        } ;
 
-        const handleSelect = (category: string, main: string) => {
+        const handleSelect = (category, main) => {
             setFilter(prevFilter => ({
                 ...prevFilter,
                 category,
