@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { MOVIE_URL, API_KEY } from '../../config';
 import useFetch from '../hooks/useFetch';
 import useScroll from '../hooks/useScroll';
+
 const makeURL = filter => {
     let { main, language, page, category } = filter;
 

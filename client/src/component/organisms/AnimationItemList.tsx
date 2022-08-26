@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-interface flexProps {
+interface FlexBoxProps {
     opacity?: number;
     transition?: string;
     mount?: boolean;
 }
-const FlexBox = styled.div`
+const FlexBox = styled.div<FlexBoxProps>`
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -24,8 +24,8 @@ const FlexBox = styled.div`
         background: #ccc;
     }
     transition: all 0.5s linear;
-    opacity: ${({ mount }: flexProps) => (mount ? '1' : '0')};
-    pointer-events: ${({ mount }: flexProps) => (mount ? 'auto' : 'none')};
+    opacity: ${({ mount }) => (mount ? '1' : '0')};
+    pointer-events: ${({ mount }) => (mount ? 'auto' : 'none')};
     cursor: pointer;
 `;
 export const LoadingAnimationItemList = ({ children }) => {

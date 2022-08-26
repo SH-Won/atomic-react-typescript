@@ -9,7 +9,7 @@ interface CircleProps {
 interface DotProps {
     deg: number;
 }
-const animateDot = deg => keyframes`
+const animateDot = (deg:number) => keyframes`
 0%{
     transform :rotate(0deg);
 }

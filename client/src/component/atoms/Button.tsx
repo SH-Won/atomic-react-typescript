@@ -17,7 +17,7 @@ const CommonButton = styled.button`
     text-align: center;
     vertical-align: middle;
 `;
-const Button = ({ text }) => {
+const Button = ({ text, onClick }) => {
     return <CommonButton>{text}</CommonButton>;
 };
 

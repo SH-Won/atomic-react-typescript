@@ -1,4 +1,4 @@
-export const movieProps = {
+export const MOVIE = {
     info: {
         url: '',
         page: null,
@@ -23,7 +23,7 @@ export const movieProps = {
     },
 };
 //
-export const tvProps = {
+export const TV = {
     info: {
         url: '',
         page: 1,
@@ -48,7 +48,7 @@ export const tvProps = {
     backgroundColor: '',
 };
 
-export const upcommingProps = {
+export const UPCOMING = {
     info: {
         url: '',
         page: 1,
@@ -73,7 +73,7 @@ export const upcommingProps = {
 };
 // trending/{media_type}/{time_window}
 // `${MOVIE_URL}${main}/${category}?api_key=${API_KEY}&language=${language}&page=${page}`;
-export const trendingProps = {
+export const TRENDING = {
     info: {
         url: '',
         page: 1,

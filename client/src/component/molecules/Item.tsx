@@ -1,9 +1,9 @@
-import React, { ReactDOM, ReactElement } from 'react';
+import React from 'react';
 import styled, { css, keyframes } from 'styled-components';
 import Title from '../atoms/Title';
-import ItemImage from './ItemImage';
 import { Link } from 'react-router-dom';
 import CircleProgress from './CircleProgress';
+import Image from '../atoms/Image';
 
 interface ItemCardProps {
     isLoading?: boolean;
@@ -50,7 +50,7 @@ const PercentWrapper = styled.div`
 export const LoadingItem = () => {
     return (
         <ItemCard isLoading={true}>
-            <ItemImage src={null} />
+            <Image src={null} />
             <Content>
                 <PercentWrapper>{/* <CircleProgress percent={item.vote_average * 10} /> */}</PercentWrapper>
             </Content>
@@ -61,7 +61,7 @@ const Item = ({ item, category, lastIndexRef = null }: any) => {
     return (
         <ItemCard ref={lastIndexRef}>
             <Link to={`/${category}/${item.id}`}>
-                <ItemImage src={item.poster_path} />
+                <Image src={item.poster_path} aspectRatio={13 / 10} />
                 <Content>
                     <PercentWrapper>
                         <CircleProgress percent={Math.floor(item.vote_average * 10)} />

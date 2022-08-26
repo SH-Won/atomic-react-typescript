@@ -16,9 +16,13 @@ const List = styled.div`
     border-radius: 30px;
     padding: 0.25rem 0.75rem;
     box-sizing: border-box;
-    #f5f5f5
+    /* #f5f5f5 */
 `;
+type Option = {
+    [key: string]: string;
+};
 interface SelectProps {
+    options?: Option[];
     selected?: boolean;
     left?: string;
     width?: string;
@@ -26,18 +30,19 @@ interface SelectProps {
     optionSelectedColor?: string;
     optionBackGroundColor?: string;
 }
-const Title = styled.h3`
-    background: ${(props: SelectProps) => (props.selected ? props.optionSelectedColor : props.optionColor)};
+
+const Title = styled.h3<SelectProps>`
+    background: ${props => (props.selected ? props.optionSelectedColor : props.optionColor)};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 0.9rem;
 `;
-const ItemBackGround = styled.div`
+const ItemBackGround = styled.div<SelectProps>`
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%;
+    /* width: 100%; */
     z-index: -1;
     background: ${props => (props.optionBackGroundColor ? props.optionBackGroundColor : props.theme.darkBlue)};
     border-radius: 30px;
@@ -67,9 +72,9 @@ export const LoadingOptionBar = ({ options, optionColor, optionSelectedColor, op
 
 const OptionBar = ({ options, onClick, optionColor, optionSelectedColor, optionBackGroundColor }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const [childLeft, setChildLeft] = useState(null);
-    const [childWidth, setChildWidth] = useState(null);
-    const optionRefs = useRef<HTMLDivElement>();
+    const [childLeft, setChildLeft] = useState<object>({});
+    const [childWidth, setChildWidth] = useState<object>({});
+    const optionRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
     const handleSelected = (index: number, category: string, main: string) => {
         if (selectedIndex === index) return;
@@ -78,7 +83,7 @@ const OptionBar = ({ options, onClick, optionColor, optionSelectedColor, optionB
     };
 
     useLayoutEffect(() => {
-        const { current } = optionRefs;
+        const { current } = optionRef;
         const childLeftSize = {};
         const childWidthSize = {};
         current.childNodes.forEach((element, index) => {
@@ -90,8 +95,8 @@ const OptionBar = ({ options, onClick, optionColor, optionSelectedColor, optionB
     }, []);
 
     return (
-        <Wrapper ref={optionRefs}>
-            {options.map((option, index) => (
+        <Wrapper ref={optionRef}>
+            {options.map((option: Option, index: number) => (
                 <List key={option.name} onClick={() => handleSelected(index, option.category, option.main)}>
                     <Title
                         optionColor={optionColor}

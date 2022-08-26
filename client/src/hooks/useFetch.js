@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
 
-// const fullURL = `https://blog-sh.herokuapp.com/api/posts/${url}`;
-// const fullURL = `http://localhost:5000/api/posts/${url}`
-// const infoEndpoint = `${MOVIE_URL}movie/${movieId}?api_key=${API_KEY}`
 const useFetch = (url, filterCategory = false, lazy = null) => {
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
@@ -32,7 +29,7 @@ const useFetch = (url, filterCategory = false, lazy = null) => {
     };
 
     useEffect(() => {
-        if(url === '') return;
+        if (url === '') return;
         fetchData();
     }, [url]);
 

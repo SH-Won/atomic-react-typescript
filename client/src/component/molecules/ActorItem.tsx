@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ItemImage from './ItemImage';
+import Image from '../atoms/Image';
 
 const ItemCard = styled.article`
     display: flex;
@@ -10,7 +10,6 @@ const ItemCard = styled.article`
     min-width: 100px;
     margin: 1rem;
     align-content: center;
-    /* min-width: 200px; */
     box-shadow: 0 2px 8px rgb(0 0 0 / 10%);
     background-color: #fff;
     border-radius: 1rem;
@@ -25,7 +24,7 @@ const Content = styled.div`
 const ActorItem = ({ item }) => {
     return (
         <ItemCard>
-            <ItemImage src={item.profile_path} />
+            <Image src={item.profile_path} aspectRatio={12 / 10} />
             <Content>
                 <span style={{ fontSize: '1rem' }}>{item.original_name}</span>
                 <span style={{ fontSize: '.8rem', color: 'gray' }}>{item.character}</span>
