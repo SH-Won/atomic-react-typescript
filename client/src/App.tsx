@@ -8,6 +8,7 @@ import NavBar from './component/organisms/NavBar';
 const LandingPage = lazy(() => import('./page/LandingPage'));
 const DetailPage = lazy(() => import('./page/DetailPage'));
 const SearchDetailPage = lazy(() => import('./page/SearchDetailPage'));
+const LoginPage = lazy(() => import('./page/login/LoginPage'))
 const App = () => {
     return (
         <ThemeProvider theme={theme}>
@@ -18,6 +19,7 @@ const App = () => {
                     <Route exact path="/movie/:id" component={DetailPage} />
                     <Route exact path="/" component={LandingPage} />
                     <Route exact path="/search/:query" component={SearchDetailPage} />
+                    <Route exact path="/login" component={LoginPage}/>
                 </Switch>
             </Suspense>
             <GlobalStyle />
