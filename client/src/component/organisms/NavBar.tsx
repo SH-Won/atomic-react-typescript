@@ -10,8 +10,9 @@ const NavList = styled.ul`
     list-style: none;
 `;
 const Li = styled.li`
-    padding: 0.5rem;
+    padding: 0.8rem;
     margin: 0.3rem;
+    font-size:1.5rem;
     color: ${props => props.theme.white};
 `;
 const A = styled(Link)`
@@ -19,7 +20,10 @@ const A = styled(Link)`
 `;
 
 const Nav = styled.nav`
+    display:flex;
+    
     background-color: ${props => props.theme.darkBlue};
+    height:100%;
 `;
 
 const items = [

@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
+
 const Wrapper = styled.div`
     position: relative;
     display: flex;
@@ -16,6 +17,8 @@ const List = styled.div`
     border-radius: 30px;
     padding: 0.25rem 0.75rem;
     box-sizing: border-box;
+    cursor: pointer;
+
     /* #f5f5f5 */
 `;
 type Option = {
@@ -36,6 +39,7 @@ const Title = styled.h3<SelectProps>`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 0.9rem;
+    
 `;
 const ItemBackGround = styled.div<SelectProps>`
     position: absolute;

@@ -9,7 +9,7 @@ const BrotliPlugin = require('brotli-webpack-plugin');
 const webpack = require('webpack');
 module.exports={
     
-    entry:["./src/index.js"],
+    entry:["./src/index.tsx"],
     plugins:[
         new HtmlWebPackPlugin({
             title:'Caching',
@@ -60,6 +60,7 @@ module.exports={
       },
     
     resolve:{
+        alias: {      '@': path.resolve(__dirname, 'src'),    },
         extensions:['.js','.jsx','.css','.ts','.tsx','.svg','*.svg'],
         // modules:['node_modules'],
     },
@@ -85,8 +86,11 @@ module.exports={
                                 {
                                   corejs: 3,
                                   proposals: true,
+                                  useESmodules:true,
                                 },
+
                               ],
+                              ["babel-plugin-styled-components"],
                             ['import',{libraryName:'antd', style:true}],   
                         ]
                     }

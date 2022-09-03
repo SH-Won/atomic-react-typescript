@@ -1,6 +1,8 @@
 import React from 'react';
-import ItemContainer from '../component/templates/ItemContainer';
+
 import LandingIntro from '../component/organisms/LandingIntro';
+import ItemContainer from '../component/templates/ItemContainer';
+
 import * as config from '../config/landingPageConfig';
 import withFetch from '../hoc/withFetch';
 
