@@ -1,9 +1,9 @@
 import React, { useRef, useCallback } from 'react';
 
-const useScroll = (loading, loadMore = null) => {
-    const observer = useRef();
+const useScroll = (loading:boolean, loadMore: () => void ) => {
+    const observer = useRef<IntersectionObserver>();
 
-    const handleScroll = ([entry], ob) => {
+    const handleScroll = ([entry] : IntersectionObserverEntry[], ob : IntersectionObserver) => {
         if (entry.isIntersecting) {
             if (loadMore !== null) {
                 loadMore();
@@ -12,7 +12,7 @@ const useScroll = (loading, loadMore = null) => {
         }
     };
     const lastIndexRef = useCallback(
-        node => {
+        (node : HTMLElement) => {
             if (loading) return;
             if (observer.current) observer.current.disconnect();
             observer.current = new IntersectionObserver(handleScroll, {

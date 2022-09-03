@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = (url, filterCategory = false, lazy = null) => {
-    const [loading, setLoading] = useState(true);
-    const [posts, setPosts] = useState([]);
-    const [category, setCategory] = useState(null);
+const useFetch = (url:string, filterCategory:boolean|string = false, lazy:boolean|null = null) => {
+    const [loading, setLoading] = useState<boolean>(true);
+    const [posts, setPosts] = useState<object[]>([]);
+    const [category, setCategory] = useState<boolean|string>(false);
     const fetchData = async () => {
         try {
             setLoading(true);

@@ -1,9 +1,23 @@
+import { MOVIE } from '../config/landingPageConfig';
 import React, { useRef, useState, useEffect } from 'react';
 import { MOVIE_URL, API_KEY } from '../../config';
 import useFetch from '../hooks/useFetch';
 import useScroll from '../hooks/useScroll';
 
-const makeURL = filter => {
+
+interface FilterProps{
+   main:string;
+   language:string;
+   page:number;
+   category:string;
+   lazy?: boolean;
+   url? : string;
+
+}
+type ComponentProps = typeof MOVIE;
+
+
+export const makeURL = (filter : FilterProps) => {
     let { main, language, page, category } = filter;
 
     return page !== null
@@ -11,18 +25,18 @@ const makeURL = filter => {
         : `${MOVIE_URL}${main}/${category}?api_key=${API_KEY}&language=${language}`;
 };
 
-const withFetch = Component => {
-    return props => {
-        const [filter, setFilter] = useState({
+const withFetch = (Component : React.FC<ComponentProps>)  => {
+    return (props : ComponentProps) => {
+        const [filter, setFilter] = useState<FilterProps>({
             ...props.info,
         });
 
-        const domRef = useRef();
+        const domRef = useRef<HTMLElement>();
         const [pageLoading, setPageLoading] = useState(true);
         const [aniMode, setAniMode] = useState(true);
-        const { loading, posts } = useFetch(filter.url, filter.category, filter.lazy);
+        const { loading, posts } = useFetch(filter.url as string, filter.category as string, filter.lazy);
 
-        const loadMore = ()  =>  {
+        const loadMore = () :void =>  {
             setFilter(prevQuery => ({
                 ...prevQuery,
                 page: prevQuery.page + 1,
@@ -31,7 +45,7 @@ const withFetch = Component => {
             }));
         } ;
 
-        const handleSelect = (category, main) => {
+        const handleSelect = (category:string, main : string) => {
             setFilter(prevFilter => ({
                 ...prevFilter,
                 category,
@@ -52,7 +66,7 @@ const withFetch = Component => {
                             ...prevFilter,
                             url: makeURL(prevFilter),
                         }));
-                        ob.unobserve(domRef.current);
+                        ob.unobserve(domRef.current as HTMLElement);
                     }
                 },
                 { threshold: 0.8 },

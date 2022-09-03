@@ -1,7 +1,7 @@
 export const MOVIE = {
     info: {
         url: '',
-        page: null,
+        page: 1,
         language: 'ko',
         main: 'movie',
         category: 'popular',
